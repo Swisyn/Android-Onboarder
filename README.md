@@ -52,16 +52,7 @@ public class IntroActivity extends OnboarderActivity {
                         .build()
                 );
 
-        setSkipButtonTitle(getString(R.string.button_skip));
-        setFinishButtonTitle(getString(R.string.button_finish));
-
         initOnboardingPages(pages);
-    }
-
-    @Override
-    public void onSkipButtonPressed() {
-        super.onSkipButtonPressed();
-        Toast.makeText(this, "Skip button was pressed!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
