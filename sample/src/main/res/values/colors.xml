@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryDark">#F57C00</color>
+    <color name="colorAccent">#FF5722</color>
+
+    <color name="color_android_green">#6ab344</color>
+    <color name="primary_text">#FAFAFA</color>
+    <color name="secondary_text">#FFFFFF</color>
+    <color name="color_donut">#b4dbb9</color>
+    <color name="color_eclair">#f4c58e</color>
+    <color name="color_froyo">#d4a8dd</color>
+    <color name="color_gingerbread">#f7bdc3</color>
+    <color name="color_honeycomb">#fee8ad</color>
+    <color name="color_ice_cream_sandwich">#acd3f5</color>
+    <color name="color_jellybean">#afdb89</color>
+    <color name="color_kitkat">#f9c2c7</color>
+    <color name="color_lollipop">#76c7f1</color>
+    <color name="color_marshmallow">#9ddbd1</color>
+    <color name="color_oreo">#0a50bb</color>
+
+</resources>
