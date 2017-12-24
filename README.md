@@ -3,8 +3,7 @@
 Android Onboarder is a simple and lightweight library that helps you to create cool and beautiful introduction screens for your apps without writing dozens of lines of code.
 </p>
 
-[![gif](https://media.giphy.com/media/3oFzm1BGCJzKM5iuIw/giphy.gif)]
-
+![Sample image](https://media.giphy.com/media/3oFzm1BGCJzKM5iuIw/giphy.gif)
 
 ## Usage
 
