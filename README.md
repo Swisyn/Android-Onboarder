@@ -12,7 +12,7 @@ Android Onboarder is a simple and lightweight library that helps you to create c
 Add dependency in your build.gradle
 
 ```groovy
-compile 'com.cuneytayyildiz.onboarder:AndroidOnboarder:1.0.0'
+implementation 'com.cuneytayyildiz.onboarder:AndroidOnboarder:1.0.0'
 ```
 
 #### Implementation
