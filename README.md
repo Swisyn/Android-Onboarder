@@ -76,7 +76,7 @@ public class IntroActivity extends OnboarderActivity {
 #### Here are some methods for customization
 
 ```java
-
+setPageTransformer(ViewPager.PageTransformer); // Animate your page transitions
 setActiveIndicatorColor(android.R.color.white); // Change dot's color for active status
 setInactiveIndicatorColor(android.R.color.darker_gray); // Change dot's color for inactive status
 shouldDarkenButtonsLayout(true); // Make buttons layout derker on bottom
@@ -91,6 +91,9 @@ setTitleTextSize(12f); // Set title text size
 setDescriptionTextSize(12f); // Set description text size 
 setMultilineDescriptionCentered(true); // Set description to be centered
 ```
+
+## Additional Links
+[A collection of view pager transformers](https://github.com/geftimov/android-viewpager-transformers)
 
 ## License
 
