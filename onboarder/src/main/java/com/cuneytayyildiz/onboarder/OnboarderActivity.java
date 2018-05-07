@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import com.cuneytayyildiz.onboarder.utils.ColorsArrayBuilder;
+import com.cuneytayyildiz.onboarder.utils.OnboarderPageChangeListener;
 import com.cuneytayyildiz.onboarder.views.CircleIndicatorView;
 
 import java.util.List;
@@ -35,6 +36,7 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
 
     private boolean shouldDarkenButtonsLayout = false;
     private boolean shouldUseFloatingActionButton = false;
+    private OnboarderPageChangeListener onboarderPageChangeListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +151,7 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
         btnFinish.setVisibility(position == lastPagePosition && !this.shouldUseFloatingActionButton ? View.VISIBLE : View.GONE);
         if (this.shouldUseFloatingActionButton)
             this.fab.setImageResource(position == lastPagePosition ? R.drawable.ic_done_white_24dp : R.drawable.ic_arrow_forward_white_24dp);
+        if (onboarderPageChangeListener != null) onboarderPageChangeListener.onPageChanged(position);
     }
 
     @Override
@@ -160,6 +163,10 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
+    }
+
+    public void setOnboarderPageChangeListener(OnboarderPageChangeListener onboarderPageChangeListener){
+        this.onboarderPageChangeListener = onboarderPageChangeListener;
     }
 
     //<editor-fold desc="Buttons">
