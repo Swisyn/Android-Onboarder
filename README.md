@@ -14,7 +14,7 @@ Android Onboarder is a simple and lightweight library that helps you to create c
 Add dependency in your build.gradle
 
 ```groovy
-implementation 'com.cuneytayyildiz:onboarder:1.0.1'
+implementation 'com.cuneytayyildiz:onboarder:1.0.2'
 ```
 
 #### Implementation
@@ -89,6 +89,15 @@ setTitleTextSize(12f); // Set title text size
 setDescriptionTextSize(12f); // Set description text size 
 setMultilineDescriptionCentered(true); // Set description to be centered
 setOnboarderPageChangeListener(OnboarderPageChangeListener) // Get current position of the page
+setFinishButtonTextColor(@ColorRes int color)
+setNextButtonTextColor(@ColorRes int color)
+setSkipButtonTextColor(@ColorRes int color)
+setFinishButtonBackgroundColor(@ColorRes int color)
+setSkipButtonBackgroundColor(@ColorRes int color) 
+setNextButtonBackgroundColor(@ColorRes int color)
+setNextButtonTitle(CharSequence title)
+setNextButtonTitle(@StringRes int titleResId)
+setNextButtonIcon(@DrawableRes int drawableResId)
 ```
 
 ## Additional Links
