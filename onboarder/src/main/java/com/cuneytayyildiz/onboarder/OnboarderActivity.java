@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
@@ -14,7 +16,6 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 
 import com.cuneytayyildiz.onboarder.utils.ColorsArrayBuilder;
 import com.cuneytayyildiz.onboarder.utils.OnboarderPageChangeListener;
@@ -27,8 +28,7 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
     private CircleIndicatorView circleIndicatorView;
     private ViewPager viewPagerOnboarder;
     private OnboarderPagerAdapter onboarderAdapter;
-    private ImageButton btnNext;
-    private Button btnSkip, btnFinish;
+    private Button btnSkip, btnFinish, btnNext;
     private FrameLayout buttonsLayout;
     private FloatingActionButton fab;
     private View divider;
@@ -151,7 +151,8 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
         btnFinish.setVisibility(position == lastPagePosition && !this.shouldUseFloatingActionButton ? View.VISIBLE : View.GONE);
         if (this.shouldUseFloatingActionButton)
             this.fab.setImageResource(position == lastPagePosition ? R.drawable.ic_done_white_24dp : R.drawable.ic_arrow_forward_white_24dp);
-        if (onboarderPageChangeListener != null) onboarderPageChangeListener.onPageChanged(position);
+        if (onboarderPageChangeListener != null)
+            onboarderPageChangeListener.onPageChanged(position);
     }
 
     @Override
@@ -165,7 +166,7 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
         }
     }
 
-    public void setOnboarderPageChangeListener(OnboarderPageChangeListener onboarderPageChangeListener){
+    public void setOnboarderPageChangeListener(OnboarderPageChangeListener onboarderPageChangeListener) {
         this.onboarderPageChangeListener = onboarderPageChangeListener;
     }
 
@@ -209,6 +210,46 @@ public abstract class OnboarderActivity extends AppCompatActivity implements Vie
 
     public void setPageTransformer(ViewPager.PageTransformer pageTransformer) {
         viewPagerOnboarder.setPageTransformer(true, pageTransformer);
+    }
+
+    public void setFinishButtonTextColor(@ColorRes int color) {
+        this.btnFinish.setTextColor(ContextCompat.getColor(this, color));
+    }
+
+    public void setNextButtonTextColor(@ColorRes int color) {
+        this.btnNext.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+        this.btnNext.setTextColor(ContextCompat.getColor(this, color));
+    }
+
+    public void setSkipButtonTextColor(@ColorRes int color) {
+        this.btnSkip.setTextColor(ContextCompat.getColor(this, color));
+    }
+
+    public void setFinishButtonBackgroundColor(@ColorRes int color) {
+        this.btnFinish.setBackgroundColor(ContextCompat.getColor(this, color));
+    }
+
+    public void setSkipButtonBackgroundColor(@ColorRes int color) {
+        this.btnSkip.setBackgroundColor(ContextCompat.getColor(this, color));
+    }
+
+    public void setNextButtonBackgroundColor(@ColorRes int color) {
+        this.btnNext.setBackgroundColor(ContextCompat.getColor(this, color));
+    }
+
+    public void setNextButtonTitle(CharSequence title) {
+        this.btnNext.setText(title);
+        this.btnNext.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+    }
+
+    public void setNextButtonTitle(@StringRes int titleResId) {
+        this.btnNext.setText(titleResId);
+        this.btnNext.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+    }
+
+    public void setNextButtonIcon(@DrawableRes int drawableResId) {
+        this.btnNext.setText(null);
+        this.btnNext.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, drawableResId);
     }
 
     protected void onSkipButtonPressed() {

@@ -129,8 +129,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .build()
         );
 
-        setSkipButtonTitle(getString(R.string.button_skip));
-        setFinishButtonTitle(getString(R.string.button_finish));
+        setSkipButtonTitle(R.string.button_skip);
+        setFinishButtonTitle(R.string.button_finish);
+
         setOnboarderPageChangeListener(this);
         initOnboardingPages(pages);
     }
