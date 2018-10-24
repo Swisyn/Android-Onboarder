@@ -14,7 +14,7 @@ Android Onboarder is a simple and lightweight library that helps you to create c
 Add dependency in your build.gradle
 
 ```groovy
-implementation 'com.cuneytayyildiz:onboarder:1.0.0'
+implementation 'com.cuneytayyildiz:onboarder:1.0.2'
 ```
 
 #### Implementation
@@ -24,7 +24,7 @@ implementation 'com.cuneytayyildiz:onboarder:1.0.0'
 ```java
 
 
-public class IntroActivity extends OnboarderActivity {
+public class IntroActivity extends OnboarderActivity implements OnboarderPageChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,7 @@ public class IntroActivity extends OnboarderActivity {
                         .multilineDescriptionCentered(true)
                         .build()
                 );
-
+        setOnboarderPageChangeListener(this);
         initOnboardingPages(pages);
     }
 
@@ -61,6 +61,11 @@ public class IntroActivity extends OnboarderActivity {
     public void onFinishButtonPressed() {
         // implement your logic, save induction has done to sharedPrefs
         Toast.makeText(this, "Finish button was pressed", Toast.LENGTH_SHORT).show();
+    }
+    
+    @Override
+    public void onPageChanged(int position) {
+         Toast.makeText(this, "onPageChanged: " + position, Toast.LENGTH_SHORT).show();
     }
 }
 
@@ -83,6 +88,16 @@ setSkipButtonHidden(); // Hide skip button
 setTitleTextSize(12f); // Set title text size 
 setDescriptionTextSize(12f); // Set description text size 
 setMultilineDescriptionCentered(true); // Set description to be centered
+setOnboarderPageChangeListener(OnboarderPageChangeListener) // Get current position of the page
+setFinishButtonTextColor(@ColorRes int color)
+setNextButtonTextColor(@ColorRes int color)
+setSkipButtonTextColor(@ColorRes int color)
+setFinishButtonBackgroundColor(@ColorRes int color)
+setSkipButtonBackgroundColor(@ColorRes int color) 
+setNextButtonBackgroundColor(@ColorRes int color)
+setNextButtonTitle(CharSequence title)
+setNextButtonTitle(@StringRes int titleResId)
+setNextButtonIcon(@DrawableRes int drawableResId)
 ```
 
 ## Additional Links
