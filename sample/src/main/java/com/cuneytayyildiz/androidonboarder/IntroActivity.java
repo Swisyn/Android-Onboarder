@@ -22,9 +22,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Donut")
                         .description("Android 1.6")
                         .imageResourceId(R.drawable.donut_circle)
-                        .backgroundColor(R.color.color_donut)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_donut)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -32,9 +32,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Eclair")
                         .description("Android 2.1")
                         .imageResourceId(R.drawable.eclair_circle)
-                        .backgroundColor(R.color.color_eclair)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_eclair)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -42,9 +42,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Froyo")
                         .description("Android 2.2")
                         .imageResourceId(R.drawable.froyo_circle)
-                        .backgroundColor(R.color.color_froyo)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_froyo)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -52,9 +52,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Gingerbread")
                         .description("Android 2.3")
                         .imageResourceId(R.drawable.gingerbread_circle)
-                        .backgroundColor(R.color.color_gingerbread)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_gingerbread)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -62,9 +62,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Honeycomb")
                         .description("Android 3.0")
                         .imageResourceId(R.drawable.honeycomb_circle)
-                        .backgroundColor(R.color.color_honeycomb)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_honeycomb)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -72,9 +72,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Ice Cream Sandwich")
                         .description("Android 4.0")
                         .imageResourceId(R.drawable.icecream_circle)
-                        .backgroundColor(R.color.color_ice_cream_sandwich)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_ice_cream_sandwich)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -82,9 +82,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Jellybean")
                         .description("Android 4.1")
                         .imageResourceId(R.drawable.jellybean_circle)
-                        .backgroundColor(R.color.color_jellybean)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_jellybean)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -92,9 +92,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("KitKat")
                         .description("Android 4.4")
                         .imageResourceId(R.drawable.kitkat_circle)
-                        .backgroundColor(R.color.color_kitkat)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_kitkat)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -102,9 +102,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Lollipop")
                         .description("Android 5.0")
                         .imageResourceId(R.drawable.lollipop_circle)
-                        .backgroundColor(R.color.color_lollipop)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_lollipop)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -112,9 +112,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Marshmallow")
                         .description("Android 6.0")
                         .imageResourceId(R.drawable.marshmallow_circle)
-                        .backgroundColor(R.color.color_marshmallow)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_marshmallow)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
 
@@ -122,9 +122,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Oreo")
                         .description("Android 8.0")
                         .imageResourceId(R.drawable.oreo_circle)
-                        .backgroundColor(R.color.color_oreo)
-                        .titleColor(R.color.color_android_green)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_oreo)
+                        .titleColorId(R.color.color_android_green)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build()
         );

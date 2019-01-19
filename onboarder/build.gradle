@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.3'
 
     defaultConfig {
         minSdkVersion 14
@@ -25,11 +24,13 @@ android {
 }
 
 dependencies {
-    implementation "com.android.support:appcompat-v7:$supportLibVersion"
-    implementation "com.android.support:design:$supportLibVersion"
-    configurations.all {
+    //def supportLibVersion = '1.1.0-alpha01'
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.1.0-alpha02'
+/*    configurations.all {
         resolutionStrategy.force "com.android.support:support-annotations:$supportLibVersion"
-    }
+    }*/
 
 }
-apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
+//apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'
