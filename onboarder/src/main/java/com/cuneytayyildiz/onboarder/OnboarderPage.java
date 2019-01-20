@@ -33,7 +33,11 @@ public class OnboarderPage {
     private float descriptionTextSize = 0f;
     private int imageWidthPx = ViewGroup.LayoutParams.WRAP_CONTENT;
     private int imageHeightPx = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private float imageBias = .5f;//centered by default
+
+    private int textPaddingBottomPx = 0;
     private boolean multilineDescriptionCentered;
+
 
     private OnboarderPage(Builder builder) {
         title = builder.title;
@@ -53,6 +57,8 @@ public class OnboarderPage {
         setMultilineDescriptionCentered(builder.multilineDescriptionCentered);
         setImageHeightPx(builder.imageHeightPx);
         setImageWidthPx(builder.imageWidthPx);
+        setImageBias(builder.imageBias);
+        setTextPaddingBottomPx(builder.textPaddingBottomDp);
     }
 
     public String getTitle() {
@@ -192,6 +198,25 @@ public class OnboarderPage {
         return imageWidthPx;
     }
 
+    public float getImageBias() {
+        return imageBias;
+    }
+
+    public void setImageBias(float imageBias) {
+        this.imageBias = imageBias;
+    }
+
+    public int getTextPaddingBottomPx() {
+        return textPaddingBottomPx;
+    }
+
+    public void setTextPaddingBottomPx(int textPaddingBottomDp) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+
+        this.textPaddingBottomPx = Math.round(textPaddingBottomDp*scale);
+    }
+
+
     public static final class Builder {
         private String title;
         private String description;
@@ -216,6 +241,10 @@ public class OnboarderPage {
         private boolean multilineDescriptionCentered;
         int imageWidthPx = ViewGroup.LayoutParams.WRAP_CONTENT;
         int imageHeightPx = ViewGroup.LayoutParams.WRAP_CONTENT;
+        float imageBias = .5f;//center
+
+        int textPaddingBottomDp = 16;
+
         public Builder() {
         }
 
@@ -304,6 +333,17 @@ public class OnboarderPage {
             final float scale = Resources.getSystem().getDisplayMetrics().density;
             imageWidthPx = Math.round(width*scale);
             imageHeightPx = Math.round(height*scale);
+            return this;
+        }
+
+        public Builder imageBias(float bias){
+            imageBias = bias;
+            return this;
+        }
+
+
+        public Builder textPaddingBottomDp(int padding) {
+            textPaddingBottomDp = padding;
             return this;
         }
 

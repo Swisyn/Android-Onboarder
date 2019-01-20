@@ -2,6 +2,7 @@ package com.cuneytayyildiz.onboarder;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.appcompat.content.res.AppCompatResources;
@@ -102,6 +103,8 @@ public class OnboarderPagerAdapter extends PagerAdapter {
 
         onboarderImage.getLayoutParams().height = page.getImageHeightPx();
         onboarderImage.getLayoutParams().width = page.getImageWidthPx();
+        ((ConstraintLayout.LayoutParams)onboarderImage.getLayoutParams()).verticalBias = page.getImageBias();
+        ((ConstraintLayout.LayoutParams)onboarderDescription.getLayoutParams()).bottomMargin = page.getTextPaddingBottomPx();
 
         container.addView(itemView);
 
