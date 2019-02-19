@@ -1,16 +1,16 @@
 package com.cuneytayyildiz.onboarder;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.PagerAdapter;
-import android.support.v7.content.res.AppCompatResources;
+import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.appcompat.content.res.AppCompatResources;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -64,11 +64,23 @@ public class OnboarderPagerAdapter extends PagerAdapter {
         }
 
         if (page.getTitleColor() != 0) {
-            onboarderTitle.setTextColor(ContextCompat.getColor(context, page.getTitleColor()));
+            onboarderTitle.setTextColor(page.getTitleColor());
         }
 
         if (page.getDescriptionColor() != 0) {
-            onboarderDescription.setTextColor(ContextCompat.getColor(context, page.getDescriptionColor()));
+            onboarderDescription.setTextColor(page.getDescriptionColor());
+        }
+
+        if (page.getTitleColorId() != 0) {
+            onboarderTitle.setTextColor(ContextCompat.getColor(context, page.getTitleColorId()));
+        }
+
+        if (page.getDescriptionColorId() != 0) {
+            onboarderDescription.setTextColor(ContextCompat.getColor(context, page.getDescriptionColorId()));
+        }
+
+        if(page.getImageResource()!=null){
+            onboarderImage.setImageDrawable(page.getImageResource());
         }
 
         if (page.getImageResourceId() != 0) {
@@ -88,6 +100,11 @@ public class OnboarderPagerAdapter extends PagerAdapter {
         } else {
             onboarderDescription.setGravity(onboarderDescription.getLineCount() > 1 ? Gravity.START : Gravity.CENTER);
         }
+
+        onboarderImage.getLayoutParams().height = page.getImageHeightPx();
+        onboarderImage.getLayoutParams().width = page.getImageWidthPx();
+        ((ConstraintLayout.LayoutParams)onboarderImage.getLayoutParams()).verticalBias = page.getImageBias();
+        ((ConstraintLayout.LayoutParams)onboarderDescription.getLayoutParams()).bottomMargin = page.getTextPaddingBottomPx();
 
         container.addView(itemView);
 

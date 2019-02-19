@@ -1,9 +1,13 @@
 package com.cuneytayyildiz.onboarder;
 
+import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
 
 public class OnboarderPage {
 
@@ -17,14 +21,23 @@ public class OnboarderPage {
     @DrawableRes
     private int imageResourceId = 0;
     @ColorRes
-    private int titleColor = 0;
+    private int titleColorId = 0;
     @ColorRes
-    private int descriptionColor = 0;
+    private int descriptionColorId = 0;
     @ColorRes
-    private int backgroundColor = 0;
+    private int backgroundColorId = 0;
+    private int titleColor;
+    private int descriptionColor;
+    private int backgroundColor;
     private float titleTextSize = 0f;
     private float descriptionTextSize = 0f;
+    private int imageWidthPx = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private int imageHeightPx = ViewGroup.LayoutParams.WRAP_CONTENT;
+    private float imageBias = .5f;//centered by default
+
+    private int textPaddingBottomPx = 0;
     private boolean multilineDescriptionCentered;
+
 
     private OnboarderPage(Builder builder) {
         title = builder.title;
@@ -36,9 +49,16 @@ public class OnboarderPage {
         setTitleColor(builder.titleColor);
         setDescriptionColor(builder.descriptionColor);
         setBackgroundColor(builder.backgroundColor);
+        setTitleColorId(builder.titleColorId);
+        setDescriptionColorId(builder.descriptionColorId);
+        setBackgroundColorId(builder.backgroundColorId);
         setTitleTextSize(builder.titleTextSize);
         setDescriptionTextSize(builder.descriptionTextSize);
         setMultilineDescriptionCentered(builder.multilineDescriptionCentered);
+        setImageHeightPx(builder.imageHeightPx);
+        setImageWidthPx(builder.imageWidthPx);
+        setImageBias(builder.imageBias);
+        setTextPaddingBottomPx(builder.textPaddingBottomDp);
     }
 
     public String getTitle() {
@@ -65,12 +85,36 @@ public class OnboarderPage {
         return descriptionColor;
     }
 
-    public void setTitleColor(@ColorRes int color) {
-        this.titleColor = color;
+    public int getBackgroundColor() {
+        return backgroundColor;
     }
 
-    public void setDescriptionColor(@ColorRes int color) {
-        this.descriptionColor = color;
+    public int getTitleColorId() {
+        return titleColorId;
+    }
+
+    public int getDescriptionColorId() {
+        return descriptionColorId;
+    }
+
+    public int getBackgroundColorId() {
+        return backgroundColorId;
+    }
+
+    public void setTitleColor(int titleColor) {
+        this.titleColor = titleColor;
+    }
+
+    public void setTitleColorId(@ColorRes int color) {
+        this.titleColorId = color;
+    }
+
+    public void setDescriptionColorId(@ColorRes int color) {
+        this.descriptionColorId = color;
+    }
+
+    public void setDescriptionColor(int descriptionColor) {
+        this.descriptionColor = descriptionColor;
     }
 
     public void setImageResourceId(@DrawableRes int imageResourceId) {
@@ -81,13 +125,14 @@ public class OnboarderPage {
         return imageResourceId;
     }
 
-    public void setBackgroundColor(@ColorRes int backgroundColor) {
+    public void setBackgroundColor(int backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
 
-    public int getBackgroundColor() {
-        return backgroundColor;
+    public void setBackgroundColorId(@ColorRes int backgroundColor) {
+        this.backgroundColorId = backgroundColor;
     }
+
 
     public float getTitleTextSize() {
         return titleTextSize;
@@ -137,6 +182,41 @@ public class OnboarderPage {
         this.descriptionResourceId = descriptionResourceId;
     }
 
+    public void setImageHeightPx(int imageHeightPx) {
+        this.imageHeightPx = imageHeightPx;
+    }
+
+    public void setImageWidthPx(int imageWidthPx) {
+        this.imageWidthPx = imageWidthPx;
+    }
+
+    public int getImageHeightPx() {
+        return imageHeightPx;
+    }
+
+    public int getImageWidthPx() {
+        return imageWidthPx;
+    }
+
+    public float getImageBias() {
+        return imageBias;
+    }
+
+    public void setImageBias(float imageBias) {
+        this.imageBias = imageBias;
+    }
+
+    public int getTextPaddingBottomPx() {
+        return textPaddingBottomPx;
+    }
+
+    public void setTextPaddingBottomPx(int textPaddingBottomDp) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+
+        this.textPaddingBottomPx = Math.round(textPaddingBottomDp*scale);
+    }
+
+
     public static final class Builder {
         private String title;
         private String description;
@@ -148,14 +228,23 @@ public class OnboarderPage {
         @DrawableRes
         private int imageResourceId = 0;
         @ColorRes
-        private int titleColor = 0;
+        private int titleColorId = 0;
         @ColorRes
-        private int descriptionColor = 0;
+        private int descriptionColorId = 0;
         @ColorRes
-        private int backgroundColor = 0;
+        private int backgroundColorId = 0;
+        private int titleColor;
+        private int descriptionColor;
+        private int backgroundColor;
         private float titleTextSize = 0f;
         private float descriptionTextSize = 0f;
         private boolean multilineDescriptionCentered;
+        int imageWidthPx = ViewGroup.LayoutParams.WRAP_CONTENT;
+        int imageHeightPx = ViewGroup.LayoutParams.WRAP_CONTENT;
+        float imageBias = .5f;//center
+
+        int textPaddingBottomDp = 16;
+
         public Builder() {
         }
 
@@ -189,18 +278,33 @@ public class OnboarderPage {
             return this;
         }
 
-        public Builder titleColor(  @ColorRes int val) {
-            titleColor = val;
+        public Builder titleColorId(  @ColorRes int val) {
+            titleColorId = val;
             return this;
         }
 
-        public Builder descriptionColor(  @ColorRes int val) {
-            descriptionColor = val;
+        public Builder titleColor(int color){
+            titleColor = color;
             return this;
         }
 
-        public Builder backgroundColor(  @ColorRes int val) {
-            backgroundColor = val;
+        public Builder descriptionColorId(  @ColorRes int val) {
+            descriptionColorId = val;
+            return this;
+        }
+
+        public Builder descriptionColor(int color){
+            descriptionColor = color;
+            return this;
+        }
+
+        public Builder backgroundColorId(  @ColorRes int val) {
+            backgroundColorId = val;
+            return this;
+        }
+
+        public Builder backgroundColor(int color){
+            backgroundColor = color;
             return this;
         }
 
@@ -219,8 +323,34 @@ public class OnboarderPage {
             return this;
         }
 
+        public Builder imageSizePx(int width, int height){
+            imageWidthPx = width;
+            imageHeightPx = height;
+            return this;
+        }
+
+        public Builder imageSizeDp(int width, int height){
+            final float scale = Resources.getSystem().getDisplayMetrics().density;
+            imageWidthPx = Math.round(width*scale);
+            imageHeightPx = Math.round(height*scale);
+            return this;
+        }
+
+        public Builder imageBias(float bias){
+            imageBias = bias;
+            return this;
+        }
+
+
+        public Builder textPaddingBottomDp(int padding) {
+            textPaddingBottomDp = padding;
+            return this;
+        }
+
         public OnboarderPage build() {
             return new OnboarderPage(this);
         }
+
+
     }
 }
