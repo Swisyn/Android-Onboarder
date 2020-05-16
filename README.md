@@ -14,7 +14,7 @@ Android Onboarder is a simple and lightweight library that helps you to create c
 Add dependency in your build.gradle
 
 ```groovy
-implementation 'com.cuneytayyildiz:onboarder:1.0.2'
+implementation 'com.cuneytayyildiz:onboarder:1.0.4'
 ```
 
 #### Implementation
@@ -35,9 +35,9 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
                         .title("Donut")
                         .description("Android 1.6")
                         .imageResourceId( R.drawable.donut_circle)
-                        .backgroundColor(R.color.color_donut)
-                        .titleColor(R.color.primary_text)
-                        .descriptionColor(R.color.secondary_text)
+                        .backgroundColorId(R.color.color_donut)
+                        .titleColorId(R.color.primary_text)
+                        .descriptionColorId(R.color.secondary_text)
                         .multilineDescriptionCentered(true)
                         .build(),
                         
@@ -74,6 +74,7 @@ public class IntroActivity extends OnboarderActivity implements OnboarderPageCha
 #### Here are some methods for customization
 
 ```java
+/***********Activity methods***********/
 setPageTransformer(ViewPager.PageTransformer); // Animate your page transitions
 setActiveIndicatorColor(android.R.color.white); // Change dot's color for active status
 setInactiveIndicatorColor(android.R.color.darker_gray); // Change dot's color for inactive status
@@ -81,23 +82,45 @@ shouldDarkenButtonsLayout(true); // Make buttons layout derker on bottom
 setDividerColor(Color.WHITE); // Set divider color
 setDividerHeight(2); // Set divider height
 setDividerVisibility(View.GONE); // Hide divider
-shouldUseFloatingActionButton(true); // Change skip and finish button  as FloatingActionButton aka FAB
+shouldUseFloatingActionButton(true); // Change skip and finish button as FloatingActionButton aka FAB
 setSkipButtonTitle("Skip"); // Set custom text for skip button
 setFinishButton("Finish"); // Set custom text for finish button
-setSkipButtonHidden(); // Hide skip button 
-setTitleTextSize(12f); // Set title text size 
-setDescriptionTextSize(12f); // Set description text size 
-setMultilineDescriptionCentered(true); // Set description to be centered
-setOnboarderPageChangeListener(OnboarderPageChangeListener) // Get current position of the page
-setFinishButtonTextColor(@ColorRes int color)
-setNextButtonTextColor(@ColorRes int color)
-setSkipButtonTextColor(@ColorRes int color)
-setFinishButtonBackgroundColor(@ColorRes int color)
-setSkipButtonBackgroundColor(@ColorRes int color) 
-setNextButtonBackgroundColor(@ColorRes int color)
-setNextButtonTitle(CharSequence title)
-setNextButtonTitle(@StringRes int titleResId)
-setNextButtonIcon(@DrawableRes int drawableResId)
+setSkipButtonHidden(); // Hide skip button
+setOnboarderPageChangeListener(OnboarderPageChangeListener); // Get current position of the page
+setFinishButtonTextColor(@ColorRes int color);
+setNextButtonTextColor(@ColorRes int color);
+setSkipButtonTextColor(@ColorRes int color);
+setFinishButtonBackgroundColor(@ColorRes int color);
+setSkipButtonBackgroundColor(@ColorRes int color);
+setNextButtonBackgroundColor(@ColorRes int color);
+setNextButtonTitle(CharSequence title);
+setNextButtonTitle(@StringRes int titleResId);
+setNextButtonIcon(@DrawableRes int drawableResId);
+
+/*************Page methods*************/
+title("Title")//Set title
+titleResourceId(@StringRes int string)//Set title resource
+description("Description")//Set description
+stringResourceId(@StringRes int string)//Set string resource
+imageResource(Drawable drawable)//Set image drawable
+imageResourceId(int id)//Set image drawable resource
+titleColor(int color)//Set title color
+titleColorId(@ColorRes int color)//Set title color resource
+descriptionColor(int color)//Set description color
+descriptionColorId(@ColorRes int color)//Set description color resource
+backgroundColor(int color)//Set background color
+backgroundColorId(@ColorRes int color)//Set background color resource
+setTitleTextSize(12f) // Set title text size
+setDescriptionTextSize(12f) // Set description text size
+setImageSizeDp(int width, int height)//set image size in dp
+setImageSizePx(int width, int height)//set image size in px
+imageBias(float bias) //Set image bias (0 is top, 1 is bottom)
+textPaddingBottomDp(int padding) //Sets bottom padding for description (this and imageBias() can be combined to make most layouts possible)
+setMultilineDescriptionCentered(true) // Set description to be centered
+
+
+
+
 ```
 
 ## Additional Links
