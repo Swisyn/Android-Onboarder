@@ -179,26 +179,25 @@ setMultilineDescriptionCentered(true) // Set description to be centered
 ## ViewPager Transformers
 [A collection of view pager transformers used in the library](https://github.com/geftimov/android-viewpager-transformers)
 
-```kotlin
-* DefaultTransformer
-* AccordionTransformer
-* BackgroundToForegroundTransformer
-* CubeInTransformer
-* CubeOutTransformer
-* DepthPageTransformer
-* DrawFromBackTransformer
-* FlipHorizontalTransformer
-* FlipVerticalTransformer
-* ForegroundToBackgroundTransformer
-* ParallaxPageTransformer
-* RotateDownTransformer
-* RotateUpTransformer
-* StackTransformer
-* TabletTransformer
-* ZoomInTransformer
-* ZoomOutSlideTransformer
-* ZoomOutTransformer
-```
+* [DefaultTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/DefaultTransformer.kt)
+* [AccordionTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/AccordionTransformer.kt)
+* [BackgroundToForegroundTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/BackgroundToForegroundTransformer.kt)
+* [CubeInTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/CubeInTransformer.kt)
+* [CubeOutTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/CubeOutTransformer.kt)
+* [DepthPageTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/DepthPageTransformer.kt)
+* [DrawFromBackTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/DrawFromBackTransformer.kt)
+* [FlipHorizontalTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/FlipHorizontalTransformer.kt)
+* [FlipVerticalTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/FlipVerticalTransformer.kt)
+* [ForegroundToBackgroundTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ForegroundToBackgroundTransformer.kt)
+* [ParallaxPageTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ParallaxPageTransformer.kt)
+* [RotateDownTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/RotateDownTransformer.kt)
+* [RotateUpTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/RotateUpTransformer.kt)
+* [StackTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/StackTransformer.kt)
+* [TabletTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/TabletTransformer.kt)
+* [ZoomInTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ZoomInTransformer.kt)
+* [ZoomOutSlideTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ZoomOutSlideTransformer.kt)
+* [ZoomOutTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ZoomOutTransformer.kt)
+
 
 ## License
 

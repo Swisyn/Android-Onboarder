@@ -120,7 +120,7 @@ abstract class OnboarderActivity : AppCompatActivity(R.layout.activity_onboarder
         val viewId = view.id
 
         if (::onboarderAdapter.isInitialized) {
-            val isInLastPage = viewPagerOnboarder.currentItem == onboarderAdapter?.lastPosition
+            val isInLastPage = viewPagerOnboarder.currentItem == onboarderAdapter.lastPosition
 
             when {
                 viewId == R.id.button_next || viewId == R.id.fab && !isInLastPage -> {
@@ -172,8 +172,10 @@ abstract class OnboarderActivity : AppCompatActivity(R.layout.activity_onboarder
                 fab.setImageResource(if (isLastPage) R.drawable.ic_done_white_24dp else R.drawable.ic_arrow_forward_white_24dp)
             } else {
                 if (isLastPage) {
+                    btnNext.gone()
                     btnFinish.visible()
                 } else {
+                    btnFinish.gone()
                     btnNext.visible()
                 }
             }
@@ -209,8 +211,8 @@ abstract class OnboarderActivity : AppCompatActivity(R.layout.activity_onboarder
     }
 
     protected open fun onSkipButtonPressed() {
-        if (onboarderAdapter != null) {
-            viewPagerOnboarder.currentItem = onboarderAdapter!!.count
+        if (::onboarderAdapter.isInitialized) {
+            viewPagerOnboarder.currentItem = onboarderAdapter.count
         }
     }
 
