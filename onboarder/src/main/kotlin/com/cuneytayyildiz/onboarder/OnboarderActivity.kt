@@ -9,15 +9,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.FrameLayout
 import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.cuneytayyildiz.onboarder.model.OnboarderPage
-import com.cuneytayyildiz.onboarder.utils.OnboarderPageChangeListener
-import com.cuneytayyildiz.onboarder.utils.gone
-import com.cuneytayyildiz.onboarder.utils.lastPosition
-import com.cuneytayyildiz.onboarder.utils.visible
+import com.cuneytayyildiz.onboarder.utils.*
 import com.cuneytayyildiz.onboarder.views.CircleIndicatorView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -75,31 +75,6 @@ abstract class OnboarderActivity : AppCompatActivity(R.layout.activity_onboarder
         circleIndicatorView.setPageIndicatorCount(pages.size)
     }
 
-    fun setInactiveIndicatorColor(color: Int) {
-        circleIndicatorView.setInactiveIndicatorColor(color)
-    }
-
-    fun setActiveIndicatorColor(color: Int) {
-        circleIndicatorView.setActiveIndicatorColor(color)
-    }
-
-    fun shouldDarkenButtonsLayout(shouldDarkenButtonsLayout: Boolean) {
-        this.shouldDarkenButtonsLayout = shouldDarkenButtonsLayout
-    }
-
-    fun setDividerColor(@ColorInt color: Int) {
-        if (!shouldDarkenButtonsLayout) divider.setBackgroundColor(color)
-    }
-
-    fun setDividerHeight(heightInDp: Int) {
-        if (!shouldDarkenButtonsLayout) divider.layoutParams.height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, heightInDp.toFloat(),
-                resources.displayMetrics).toInt()
-    }
-
-    fun setDividerVisibility(dividerVisibility: Int) {
-        divider.visibility = dividerVisibility
-    }
-
     private fun darkenColor(@ColorInt color: Int): Int {
         val hsv = FloatArray(3)
         Color.colorToHSV(color, hsv)
@@ -134,10 +109,6 @@ abstract class OnboarderActivity : AppCompatActivity(R.layout.activity_onboarder
                 }
             }
         }
-    }
-
-    protected fun setPage(position: Int) {
-        viewPagerOnboarder.currentItem = position
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
@@ -186,6 +157,43 @@ abstract class OnboarderActivity : AppCompatActivity(R.layout.activity_onboarder
 
     override fun onPageScrollStateChanged(state: Int) {}
 
+    protected open fun onSkipButtonPressed() {
+        if (::onboarderAdapter.isInitialized) {
+            viewPagerOnboarder.currentItem = onboarderAdapter.count
+        }
+    }
+
+    abstract fun onFinishButtonPressed()
+
+    protected fun setPage(position: Int) {
+        viewPagerOnboarder.currentItem = position
+    }
+
+    fun setInactiveIndicatorColor(color: Int) {
+        circleIndicatorView.setInactiveIndicatorColor(color)
+    }
+
+    fun setActiveIndicatorColor(color: Int) {
+        circleIndicatorView.setActiveIndicatorColor(color)
+    }
+
+    fun shouldDarkenButtonsLayout(shouldDarkenButtonsLayout: Boolean) {
+        this.shouldDarkenButtonsLayout = shouldDarkenButtonsLayout
+    }
+
+    fun setDividerColor(@ColorInt color: Int) {
+        if (!shouldDarkenButtonsLayout) divider.setBackgroundColor(color)
+    }
+
+    fun setDividerHeight(heightInDp: Int) {
+        if (!shouldDarkenButtonsLayout) divider.layoutParams.height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, heightInDp.toFloat(),
+                resources.displayMetrics).toInt()
+    }
+
+    fun setDividerVisibility(dividerVisibility: Int) {
+        divider.visibility = dividerVisibility
+    }
+
     fun setOnboarderPageChangeListener(onboarderPageChangeListener: OnboarderPageChangeListener?) {
         this.onboarderPageChangeListener = onboarderPageChangeListener
     }
@@ -210,13 +218,66 @@ abstract class OnboarderActivity : AppCompatActivity(R.layout.activity_onboarder
         viewPagerOnboarder.setPageTransformer(true, pageTransformer)
     }
 
-    protected open fun onSkipButtonPressed() {
-        if (::onboarderAdapter.isInitialized) {
-            viewPagerOnboarder.currentItem = onboarderAdapter.count
-        }
+
+    fun setSkipButtonTitle(title: CharSequence?) {
+        btnSkip.text = title
     }
 
-    abstract fun onFinishButtonPressed()
+    fun setSkipButtonHidden() {
+        btnSkip.gone()
+    }
+
+    fun setSkipButtonTitle(@StringRes titleResId: Int) {
+        btnSkip.setText(titleResId)
+    }
+
+    fun setFinishButtonTitle(title: CharSequence?) {
+        btnFinish.text = title
+    }
+
+    fun setFinishButtonTitle(@StringRes titleResId: Int) {
+        btnFinish.setText(titleResId)
+    }
+
+    fun setFinishButtonTextColor(@ColorRes colorResId: Int) {
+        btnFinish.setTextColor(color(colorResId))
+    }
+
+    fun setNextButtonTextColor(@ColorRes colorResId: Int) {
+        btnNext.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+        btnNext.setTextColor(color(colorResId))
+    }
+
+    fun setSkipButtonTextColor(@ColorRes colorResId: Int) {
+        btnSkip.setTextColor(color(colorResId))
+    }
+
+    fun setFinishButtonBackgroundColor(@ColorRes colorResId: Int) {
+        btnFinish.setBackgroundColor(color(colorResId))
+    }
+
+    fun setSkipButtonBackgroundColor(@ColorRes colorResId: Int) {
+        btnSkip.setBackgroundColor(color(colorResId))
+    }
+
+    fun setNextButtonBackgroundColor(@ColorRes colorResId: Int) {
+        btnNext.setBackgroundColor(color(colorResId))
+    }
+
+    fun setNextButtonTitle(title: CharSequence?) {
+        btnNext.text = title
+        btnNext.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+    }
+
+    fun setNextButtonTitle(@StringRes titleResId: Int) {
+        btnNext.setText(titleResId)
+        btnNext.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0)
+    }
+
+    fun setNextButtonIcon(@DrawableRes drawableResId: Int) {
+        btnNext.text = null
+        btnNext.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, drawableResId)
+    }
 
     fun NextButton() = btnNext
 
@@ -225,7 +286,6 @@ abstract class OnboarderActivity : AppCompatActivity(R.layout.activity_onboarder
     fun FinishButton() = btnFinish
 
     fun FabButton() = fab
-
 
     private fun getPageBackgroundColors(pages: MutableList<OnboarderPage>): Array<Int> {
         return pages.map { page -> page.backgroundColor }.toTypedArray()
