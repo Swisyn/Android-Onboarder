@@ -308,4 +308,5 @@ class IntroActivity : OnboarderActivity(), OnboarderPageChangeListener {
                 }
         )
     }
+
 }
