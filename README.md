@@ -1,3 +1,4 @@
+
 [![Android Arsenal]( https://img.shields.io/badge/Android%20Arsenal-Android%20Onboarder-green.svg?style=flat )]( https://android-arsenal.com/details/1/6598 )
 
 # Android Onboarder
@@ -5,11 +6,30 @@
 Android Onboarder is a simple and lightweight library that helps you to create cool and beautiful introduction screens for your apps without writing dozens of lines of code.
 </p>
 
-![Sample image](https://media.giphy.com/media/3oFzm1BGCJzKM5iuIw/giphy.gif)
+* [Features](#features)
+* [Getting Started](#getting-started)
+   * [Adding dependency](#adding-dependency)
+  * [Basic usage](#basic-usage)
+       * [Activity functions](#activity-functions)
+       * [Page Properties](#page-properties)
+ * [Style Modifications](#style-modifications)
+* [Localization](#localization)
+* [License](#license)
 
-## Usage
+![Sample image](https://media.giphy.com/media/WplHKZTuKyX7cKZGw7/giphy.gif)
 
-#### Gradle
+## Features 
+
+* **API >= 14** compatible.
+* 100% Kotlin ❤️
+* **AndroidX** compatible.
+* Support for **runtime permissions**.
+* Dependent only on AndroidX AppCompat/Annotations, ConstraintLayout and Kotlin JDK.
+
+
+## Getting Started
+
+#### Adding dependency
 
 Add dependency in your build.gradle (app/build.gradle)
 
@@ -17,11 +37,10 @@ Add dependency in your build.gradle (app/build.gradle)
 implementation 'com.cuneytayyildiz:onboarder:2.0.0'
 ```
 
-#### Implementation
-
-<b>To use Onboarder, create an activity that extends from OnboarderActivity like the following:</b>
-
+#### Basic usage
+To use Onboarder, create an activity that extends from OnboarderActivity like the following:
 ```kotlin
+
 class IntroActivity : OnboarderActivity(), OnboarderPageChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +84,7 @@ class IntroActivity : OnboarderActivity(), OnboarderPageChangeListener {
                         textColor = color(R.color.secondary_text)
                         multilineCentered = true
                     }
-                }, // no need to add all
+                },
                 onboarderPage {
                     backgroundColor = color(R.color.color_android_green)
 
@@ -100,67 +119,116 @@ class IntroActivity : OnboarderActivity(), OnboarderPageChangeListener {
 }
 ```
 
-#### Here are some methods for customization
+#### Activity functions
 
 ```kotlin
-/***********Activity methods***********/
-setPageTransformer(ViewPager.PageTransformer); // Animate your page transitions
-setActiveIndicatorColor(android.R.color.white); // Change dot's color for active status
-setInactiveIndicatorColor(android.R.color.darker_gray); // Change dot's color for inactive status
-shouldDarkenButtonsLayout(true); // Make buttons layout derker on bottom
-setDividerColor(Color.WHITE); // Set divider color
-setDividerHeight(2); // Set divider height
-setDividerVisibility(View.GONE); // Hide divider
-shouldUseFloatingActionButton(true); // Change skip and finish button as FloatingActionButton aka FAB
-setSkipButtonTitle("Skip"); // Set custom text for skip button
-setFinishButton("Finish"); // Set custom text for finish button
-setSkipButtonHidden(); // Hide skip button
-setOnboarderPageChangeListener(OnboarderPageChangeListener); // Get current position of the page
-setFinishButtonTextColor(@ColorRes int color);
-setNextButtonTextColor(@ColorRes int color);
-setSkipButtonTextColor(@ColorRes int color);
-setFinishButtonBackgroundColor(@ColorRes int color);
-setSkipButtonBackgroundColor(@ColorRes int color);
-setNextButtonBackgroundColor(@ColorRes int color);
-setNextButtonTitle(CharSequence title);
-setNextButtonTitle(@StringRes int titleResId);
-setNextButtonIcon(@DrawableRes int drawableResId);
+/*********** Activity methods ***********/
+fun initOnboardingPages(pages: MutableList<OnboarderPage>) // Set onboarding pages into adapter
+fun setPageTransformer(pageTransformer: ViewPager.PageTransformer) // Animate your page transitions
+fun setOnboarderPageChangeListener(onboarderPageChangeListener: OnboarderPageChangeListener?) // Get current position of the page
+ 
+fun setInactiveIndicatorColor(color: Int) // Change dot's color for inactive status
+fun setActiveIndicatorColor(color: Int) // Change dot's color for active status
 
-/*************Page methods*************/
-title("Title")//Set title
-titleResourceId(@StringRes int string)//Set title resource
-description("Description")//Set description
-stringResourceId(@StringRes int string)//Set string resource
-imageResource(Drawable drawable)//Set image drawable
-imageResourceId(int id)//Set image drawable resource
-titleColor(int color)//Set title color
-titleColorId(@ColorRes int color)//Set title color resource
-descriptionColor(int color)//Set description color
-descriptionColorId(@ColorRes int color)//Set description color resource
-backgroundColor(int color)//Set background color
-backgroundColorId(@ColorRes int color)//Set background color resource
-setTitleTextSize(12f) // Set title text size
-setDescriptionTextSize(12f) // Set description text size
-setImageSizeDp(int width, int height)//set image size in dp
-setImageSizePx(int width, int height)//set image size in px
-imageBias(float bias) //Set image bias (0 is top, 1 is bottom)
-textPaddingBottomDp(int padding) //Sets bottom padding for description (this and imageBias() can be combined to make most layouts possible)
-setMultilineDescriptionCentered(true) // Set description to be centered
+fun setDividerColor(@ColorInt color: Int) // Set divider color
+fun setDividerHeight(heightInDp: Int) // Set divider height
+fun setDividerVisibility(dividerVisibility: Int) // Hide divider
+
+fun shouldUseFloatingActionButton(shouldUseFloatingActionButton: Boolean) // Change skip and finish button as FloatingActionButton aka FAB
+
+fun shouldDarkenButtonsLayout(shouldDarkenButtonsLayout: Boolean) // Make buttons layout darker on bottom
+
+fun setSkipButtonHidden() // Hide skip button
+fun setSkipButtonTitle(title: CharSequence?) // Set custom text for skip button
+fun setSkipButtonTitle(@StringRes titleResId: Int)
+fun setSkipButtonTextColor(@ColorRes colorResId: Int)
+fun setSkipButtonBackgroundColor(@ColorRes colorResId: Int)
+
+fun setFinishButtonTitle(title: CharSequence?) // Set custom text for finish button
+fun setFinishButtonTitle(@StringRes titleResId: Int) 
+fun setFinishButtonTextColor(@ColorRes colorResId: Int)
+fun setFinishButtonBackgroundColor(@ColorRes colorResId: Int)
+
+fun setNextButtonTitle(title: CharSequence?) // Set custom text for next button
+fun setNextButtonTitle(@StringRes titleResId: Int)
+fun setNextButtonTextColor(@ColorRes colorResId: Int)
+fun setNextButtonBackgroundColor(@ColorRes colorResId: Int)
+fun setNextButtonIcon(@DrawableRes drawableResId: Int)
+
+fun NextButton() // Get Next button to change it's properties
+fun SkipButton() // Get Skip button to change it's properties
+fun FinishButton() // Get Finish button to change it's properties
+fun FabButton() // Get Fab button to change it's properties
 ```
 
+#### Page Properties
+You can change most properties of the views on page such as background color, text size, text color, showing a button, setting a click listener to view etc.
+```kotlin
+data class OnboarderPage(  
+backgroundColor // Background color of the page
+image: OnboarderImage // Thumbnail image at top
+title: OnboarderText // Title of the page
+description: OnboarderText // Description text
+miscellaneousButton: OnboarderMiscellaneousButton // A button where you can add any functionality that you want. Request a permission, show recent changes of your app, start your privacy policy url etc.
+)
 
-#### Style modifications 🎨
-<b>If you would like to change style on the OnboarderPage, you can simple add these styles in your styles.xml and change the attributes.</b>
+data class OnboarderImage(  
+ imageResId // R.drawable.first_page_thumbnail
+ drawable // ContextCompat.getDrawable(context, R.drawable.first_page_thumbnail)  
+ imageWidthPx // ViewGroup.LayoutParams.WRAP_CONTENT, 100.dp, 100.px
+ imageHeightPx // ViewGroup.LayoutParams.WRAP_CONTENT, 100.dp, 100.px
+ imageBias // .5f (0 is top, 1 is bottom)
+)
+
+data class OnboarderText(  
+text // "First Page Title" 
+textResId // R.string.first_page_title
+textColor // color(R.color.first_page_title_color)
+backgroundColor // color(R.color.first_page_title_background_color)
+widthPx // ViewGroup.LayoutParams.WRAP_CONTENT, 100.dp, 100.px
+heightPx // ViewGroup.LayoutParams.WRAP_CONTENT, 100.dp, 100.px
+typefacePath //  fonts/myfont.ttf
+typefaceFontResId // R.font.my_font
+textSize // 20f 
+textPaddingBottomPx // 20
+multilineCentered // true, false
+clickListener // View.OnClickListener{ textView -> } 
+)
+
+data class OnboarderMiscellaneousButton(
+visibility // default View.GONE,  
+text // Button text  
+textResId // R.string.button_text
+textColor // color(R.color.button_text_color)
+backgroundColor // color(R.color.button_background_color)
+widthPx // ViewGroup.LayoutParams.WRAP_CONTENT, 100.dp, 100.px
+heightPx // ViewGroup.LayoutParams.WRAP_CONTENT, 100.dp, 100.px
+typefacePath //  fonts/myfont.ttf
+typefaceFontResId // R.font.my_font
+textSize // 20f
+leftPadding // 16,  
+rightPadding // 16,  
+topPadding // 8,  
+bottomPadding // 8
+clickListener // View.OnClickListener{ button -> }  
+)
+```
+
+#### Style modifications
+If you would like to change style on the <b>OnboarderPage</b>, you can simple add these styles in your <b>app/res/values/styles.xml</b> and change the attributes.
 
 ```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 <style name="Onboarder_Image_Style">...</style>
 <style name="Onboarder_Title_Style">...</style>
 <style name="Onboarder_Description_Style">...</style>
 <style name="Onboarder_Miscellaneous_Style">...</style>
+</resources>
 ```
 
-#### Localization 🌍
-<b>To localize buttons from the library to your language, add these strings into corresponding strings.xml</b>
+#### Localization
+To localize buttons from the library to your language, add these strings into corresponding <b>app/res/values-XX/strings.xml</b>
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
@@ -169,34 +237,12 @@ setMultilineDescriptionCentered(true) // Set description to be centered
     <string name="onboarder_button.skip">...</string>
 </resources>
 ```
-<b>or</b>
+or
 ```kotlin
      SkipButton().setText(R.string.onboarder_button_skip)
      NextButton().setText(R.string.onboarder_button_next)
      FinishButton().setText(R.string.onboarder_button_finish)
 ```
-
-## ViewPager Transformers
-[A collection of view pager transformers used in the library](https://github.com/geftimov/android-viewpager-transformers)
-
-* [DefaultTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/DefaultTransformer.kt)
-* [AccordionTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/AccordionTransformer.kt)
-* [BackgroundToForegroundTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/BackgroundToForegroundTransformer.kt)
-* [CubeInTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/CubeInTransformer.kt)
-* [CubeOutTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/CubeOutTransformer.kt)
-* [DepthPageTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/DepthPageTransformer.kt)
-* [DrawFromBackTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/DrawFromBackTransformer.kt)
-* [FlipHorizontalTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/FlipHorizontalTransformer.kt)
-* [FlipVerticalTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/FlipVerticalTransformer.kt)
-* [ForegroundToBackgroundTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ForegroundToBackgroundTransformer.kt)
-* [ParallaxPageTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ParallaxPageTransformer.kt)
-* [RotateDownTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/RotateDownTransformer.kt)
-* [RotateUpTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/RotateUpTransformer.kt)
-* [StackTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/StackTransformer.kt)
-* [TabletTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/TabletTransformer.kt)
-* [ZoomInTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ZoomInTransformer.kt)
-* [ZoomOutSlideTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ZoomOutSlideTransformer.kt)
-* [ZoomOutTransformer] (https://github.com/Swisyn/Android-Onboarder/blob/master/onboarder/src/main/kotlin/com/cuneytayyildiz/onboarder/views/viewpagertransformers/ZoomOutTransformer.kt)
 
 
 ## License
