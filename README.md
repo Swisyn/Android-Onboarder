@@ -239,9 +239,9 @@ To localize buttons from the library to your language, add these strings into co
 ```
 or
 ```kotlin
-     SkipButton().setText(R.string.onboarder_button_skip)
-     NextButton().setText(R.string.onboarder_button_next)
-     FinishButton().setText(R.string.onboarder_button_finish)
+SkipButton().setText(R.string.onboarder_button_skip)
+NextButton().setText(R.string.onboarder_button_next)
+FinishButton().setText(R.string.onboarder_button_finish)
 ```
 
 
