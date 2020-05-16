@@ -42,3 +42,5 @@ local.properties
 # Sandbox stuff
 _sandbox
 /gradle.properties
+/upload_archives.gradle
+/maven_push.gradle
