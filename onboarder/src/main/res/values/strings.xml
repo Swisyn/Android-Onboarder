@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="button.finish">Finish</string>
-    <string name="button.next">Next</string>
-    <string name="button.skip">Skip</string>
+    <string name="onboarder_button.finish">Finish</string>
+    <string name="onboarder_button.next">Next</string>
+    <string name="onboarder_button.skip">Skip</string>
 </resources>

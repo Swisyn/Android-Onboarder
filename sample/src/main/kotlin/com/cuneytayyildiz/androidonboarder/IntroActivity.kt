@@ -1,22 +1,41 @@
 package com.cuneytayyildiz.androidonboarder
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.cuneytayyildiz.onboarder.OnboarderActivity
 import com.cuneytayyildiz.onboarder.model.*
 import com.cuneytayyildiz.onboarder.utils.OnboarderPageChangeListener
 import com.cuneytayyildiz.onboarder.utils.color
-import java.util.*
 
 class IntroActivity : OnboarderActivity(), OnboarderPageChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val pages: MutableList<OnboarderPage> = mutableListOf(
+        setOnboarderPageChangeListener(this)
+
+        val pages: MutableList<OnboarderPage> = createOnboarderPages()
+
+        initOnboardingPages(pages)
+    }
+
+    public override fun onSkipButtonPressed() {
+        super.onSkipButtonPressed()
+        Toast.makeText(this, "Skip button was pressed!", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onFinishButtonPressed() {
+        // implement your logic, save induction has done to sharedPrefs
+        Toast.makeText(this, "Finish button was pressed", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPageChanged(position: Int) {
+        Log.d(javaClass.simpleName, "onPageChanged: $position")
+    }
+
+    private fun createOnboarderPages(): MutableList<OnboarderPage> {
+        return mutableListOf(
                 onboarderPage {
                     backgroundColor = color(R.color.color_donut)
 
@@ -288,29 +307,5 @@ class IntroActivity : OnboarderActivity(), OnboarderPageChangeListener {
                     }
                 }
         )
-
-        setOnboarderPageChangeListener(this)
-
-        SkipButton().setText(R.string.button_skip)
-
-        FinishButton().setText(R.string.button_finish)
-
-        shouldUseFloatingActionButton(true)
-
-        initOnboardingPages(pages)
-    }
-
-    public override fun onSkipButtonPressed() {
-        super.onSkipButtonPressed()
-        Toast.makeText(this, "Skip button was pressed!", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onFinishButtonPressed() {
-        // implement your logic, save induction has done to sharedPrefs
-        Toast.makeText(this, "Finish button was pressed", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onPageChanged(position: Int) {
-        Log.d(javaClass.simpleName, "onPageChanged: $position")
     }
 }

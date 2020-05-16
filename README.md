@@ -11,69 +11,98 @@ Android Onboarder is a simple and lightweight library that helps you to create c
 
 #### Gradle
 
-Add dependency in your build.gradle
+Add dependency in your build.gradle (app/build.gradle)
 
 ```groovy
-implementation 'com.cuneytayyildiz:onboarder:1.0.4'
+implementation 'com.cuneytayyildiz:onboarder:2.0.0'
 ```
 
 #### Implementation
 
-<b>Create an activity which must extends from OnboarderActivity.</b>
+<b>To use Onboarder, create an activity that extends from OnboarderActivity like the following:</b>
 
-```java
-
-
-public class IntroActivity extends OnboarderActivity implements OnboarderPageChangeListener {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+```kotlin
+class IntroActivity : OnboarderActivity(), OnboarderPageChangeListener {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setOnboarderPageChangeListener(this)
         
-        List<OnboarderPage> pages = Arrays.asList(
-                new OnboarderPage.Builder()
-                        .title("Donut")
-                        .description("Android 1.6")
-                        .imageResourceId( R.drawable.donut_circle)
-                        .backgroundColorId(R.color.color_donut)
-                        .titleColorId(R.color.primary_text)
-                        .descriptionColorId(R.color.secondary_text)
-                        .multilineDescriptionCentered(true)
-                        .build(),
-                        
-                // No need to write all of them :P
-                
-                new OnboarderPage.Builder()
-                        .title("Oreo")
-                        .description("Android 8.0")
-                        .imageResourceId( R.drawable.oreo_circle)
-                        .backgroundColor(R.color.color_oreo)
-                        .titleColor(R.color.color_android_green)
-                        .descriptionColor(R.color.secondary_text)
-                        .multilineDescriptionCentered(true)
-                        .build()
-                );
-        setOnboarderPageChangeListener(this);
-        initOnboardingPages(pages);
+        val pages: MutableList<OnboarderPage> = createOnboarderPages()
+
+        initOnboardingPages(pages)
     }
 
-    @Override
-    public void onFinishButtonPressed() {
-        // implement your logic, save induction has done to sharedPrefs
-        Toast.makeText(this, "Finish button was pressed", Toast.LENGTH_SHORT).show();
+    public override fun onSkipButtonPressed() {
+        super.onSkipButtonPressed()
+        Toast.makeText(this, "Skip button was pressed!", Toast.LENGTH_SHORT).show()
     }
-    
-    @Override
-    public void onPageChanged(int position) {
-         Toast.makeText(this, "onPageChanged: " + position, Toast.LENGTH_SHORT).show();
+
+    override fun onFinishButtonPressed() {
+        // implement your logic, save induction has done to sharedPrefs
+        Toast.makeText(this, "Finish button was pressed", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onPageChanged(position: Int) {
+        Log.d(javaClass.simpleName, "onPageChanged: $position")
+    }
+
+    private fun createOnboarderPages(): MutableList<OnboarderPage> {
+        return mutableListOf(
+                onboarderPage {
+                    backgroundColor = color(R.color.color_donut)
+
+                    image {
+                        imageResId = R.drawable.donut_circle
+                    }
+
+                    title {
+                        text = "Donut"
+                        textColor = color(R.color.primary_text)
+                    }
+
+                    description {
+                        text = "Version 1.6 Donut was given the name Donut. "
+                        textColor = color(R.color.secondary_text)
+                        multilineCentered = true
+                    }
+                }, // no need to add all
+                onboarderPage {
+                    backgroundColor = color(R.color.color_android_green)
+
+                    image {
+                        imageResId = R.drawable.q_circle
+                    }
+
+                    title {
+                        text = "Q"
+                        textColor = color(R.color.primary_text)
+                    }
+
+                    description {
+                        text = "Android 10 was officially released on September 3, 2019 for supported Google Pixel devices.\n" +
+                                "\nGoogle announced that a new Android Version will be officially known as Android 10."
+                        textColor = color(R.color.secondary_text)
+                        multilineCentered = true
+                    }
+
+                    miscellaneousButton {
+                        visibility = View.VISIBLE
+                        text = "What's Next?"
+                        backgroundColor = Color.WHITE
+                        textColor = color(R.color.color_android_green)
+                        clickListener = View.OnClickListener {
+                            Toast.makeText(this@IntroActivity, "Hello World", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+        )
     }
 }
-
 ```
 
 #### Here are some methods for customization
 
-```java
+```kotlin
 /***********Activity methods***********/
 setPageTransformer(ViewPager.PageTransformer); // Animate your page transitions
 setActiveIndicatorColor(android.R.color.white); // Change dot's color for active status
@@ -117,14 +146,59 @@ setImageSizePx(int width, int height)//set image size in px
 imageBias(float bias) //Set image bias (0 is top, 1 is bottom)
 textPaddingBottomDp(int padding) //Sets bottom padding for description (this and imageBias() can be combined to make most layouts possible)
 setMultilineDescriptionCentered(true) // Set description to be centered
-
-
-
-
 ```
 
-## Additional Links
-[A collection of view pager transformers](https://github.com/geftimov/android-viewpager-transformers)
+
+#### Style modifications 🎨
+<b>If you would like to change style on the OnboarderPage, you can simple add these styles in your styles.xml and change the attributes.</b>
+
+```xml
+<style name="Onboarder_Image_Style">...</style>
+<style name="Onboarder_Title_Style">...</style>
+<style name="Onboarder_Description_Style">...</style>
+<style name="Onboarder_Miscellaneous_Style">...</style>
+```
+
+#### Localization 🌍
+<b>To localize buttons from the library to your language, add these strings into corresponding strings.xml</b>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="onboarder_button.finish">...</string>
+    <string name="onboarder_button.next">...</string>
+    <string name="onboarder_button.skip">...</string>
+</resources>
+```
+<b>or</b>
+```kotlin
+     SkipButton().setText(R.string.onboarder_button_skip)
+     NextButton().setText(R.string.onboarder_button_next)
+     FinishButton().setText(R.string.onboarder_button_finish)
+```
+
+## ViewPager Transformers
+[A collection of view pager transformers used in the library](https://github.com/geftimov/android-viewpager-transformers)
+
+```kotlin
+* DefaultTransformer
+* AccordionTransformer
+* BackgroundToForegroundTransformer
+* CubeInTransformer
+* CubeOutTransformer
+* DepthPageTransformer
+* DrawFromBackTransformer
+* FlipHorizontalTransformer
+* FlipVerticalTransformer
+* ForegroundToBackgroundTransformer
+* ParallaxPageTransformer
+* RotateDownTransformer
+* RotateUpTransformer
+* StackTransformer
+* TabletTransformer
+* ZoomInTransformer
+* ZoomOutSlideTransformer
+* ZoomOutTransformer
+```
 
 ## License
 

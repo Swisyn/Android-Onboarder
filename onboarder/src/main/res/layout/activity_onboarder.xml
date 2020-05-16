@@ -7,15 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".OnboarderActivity">
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_onboarder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="?android:attr/actionBarSize" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="?android:attr/actionBarSize"
+        android:background="?android:attr/listDivider" />
+
     <FrameLayout
         android:id="@+id/layout_buttons"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
         android:layout_gravity="bottom"
-        android:paddingStart="@dimen/activity_margin"
-        android:paddingLeft="@dimen/activity_margin"
-        android:paddingEnd="@dimen/activity_margin"
-        android:paddingRight="@dimen/activity_margin">
+        android:paddingStart="@dimen/button_layout_margin"
+        android:paddingLeft="@dimen/button_layout_margin"
+        android:paddingEnd="@dimen/button_layout_margin"
+        android:paddingRight="@dimen/button_layout_margin">
 
         <Button
             android:id="@+id/button_skip"
@@ -23,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start|center"
-            android:text="@string/button.skip"
+            android:text="@string/onboarder_button.skip"
             android:textColor="@color/white" />
 
         <Button
@@ -32,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
-            android:text="@string/button.finish"
+            android:text="@string/onboarder_button.finish"
             android:textColor="@color/white"
             android:visibility="gone" />
 
@@ -43,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:drawableBottom="@drawable/ic_right_white_24dp"
-            android:padding="@dimen/activity_margin"
-            android:text="@string/button.next"
+            android:padding="@dimen/button_layout_margin"
+            android:text="@string/onboarder_button.next"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -59,29 +73,14 @@
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
-
     </FrameLayout>
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="?android:attr/actionBarSize"
-        android:background="?android:attr/listDivider" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager_onboarder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="?android:attr/actionBarSize" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/activity_margin"
+        android:layout_margin="@dimen/button_layout_margin"
         android:visibility="gone"
         app:backgroundTint="?attr/colorAccent"
         app:srcCompat="@drawable/ic_arrow_forward_white_24dp"
