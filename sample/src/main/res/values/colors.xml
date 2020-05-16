@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FF9800</color>
     <color name="colorPrimaryDark">#F57C00</color>
-    <color name="colorAccent">#FF5722</color>
+    <color name="colorAccent">#FF9800</color>
 
     <color name="color_android_green">#6ab344</color>
     <color name="primary_text">#FAFAFA</color>
@@ -17,6 +17,10 @@
     <color name="color_kitkat">#f9c2c7</color>
     <color name="color_lollipop">#76c7f1</color>
     <color name="color_marshmallow">#9ddbd1</color>
+    <color name="color_nougat">#a8af9e</color>
     <color name="color_oreo">#0a50bb</color>
+    <color name="color_pie">#74c159</color>
+    <color name="color_q">#78C457</color>
+
 
 </resources>

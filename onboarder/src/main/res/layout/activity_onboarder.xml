@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_onboarder"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OnboarderActivity">
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_onboarder"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="?android:attr/actionBarSize" />
-
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="?android:attr/actionBarSize"
-        android:background="?android:attr/listDivider" />
 
     <FrameLayout
         android:id="@+id/layout_buttons"
@@ -38,19 +25,6 @@
             android:layout_gravity="start|center"
             android:text="@string/button.skip"
             android:textColor="@color/white" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <com.cuneytayyildiz.onboarder.views.CircleIndicatorView
-                android:id="@+id/indicator_circle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
 
         <Button
             android:id="@+id/button_finish"
@@ -73,15 +47,44 @@
             android:text="@string/button.next"
             android:textColor="@color/white" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <com.cuneytayyildiz.onboarder.views.CircleIndicatorView
+                android:id="@+id/indicator_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
     </FrameLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="?android:attr/actionBarSize"
+        android:background="?android:attr/listDivider" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager_onboarder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="?android:attr/actionBarSize" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/activity_margin"
-        android:src="@drawable/ic_arrow_forward_white_24dp"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:backgroundTint="?attr/colorAccent"
+        app:srcCompat="@drawable/ic_arrow_forward_white_24dp"
+        tools:visibility="visible" />
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
